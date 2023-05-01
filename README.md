@@ -1,2 +1,3 @@
-# currency-convertor-project
-An app to check live foreign currency exchange rates
+# Currency-Convertor
+Simple tool to check currency exchange rate
+
