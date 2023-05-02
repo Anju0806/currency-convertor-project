@@ -41,7 +41,7 @@
     </div>
 
     <!-- adding convert section -->
-    <div class="container wrapper">
+    <div id="convert-section" class="container wrapper">
         <div class="columns">
             <div class="column">
                 <label class="label">Amount</label>
@@ -156,9 +156,11 @@
                                 <option value="BYR">BYR - Belarusian Ruble</option>
                             </select>
                         </div>
+                        <button id="convertbtn" class="button is-info mt-2">Convert</button>
+
                     </div>
                 </div>
-                <button id="convertbtn" class="button is-info mt-5 ml-10">Convert</button>
+                <!-- <button id="convertbtn" class="button is-info ">Convert</button> -->
             </div>
             <!--  <div class="control">
                 <button id="convertbtn" class="button is-info">Convert</button>
@@ -169,31 +171,28 @@
             <date id="datehere"></date>
         </div>
         <div class="columns mt-5">
-            <div class="column">
-                <label class="label">Popular Currency Pairings</label>
-                <div id="button-container"></div>
-
+            <div class="column" id="search-label" hidden="true">
+                <p class="label">Recent Searches</p>
+                <ul id="menu-popular" class="menu-list"></ul>
             </div>
             <div class="column" id="search-label" hidden="true">
-                <p class="label" >Recent Searches</p>
+                <p class="label">Recent Searches</p>
                 <ul id="menu-container" class="menu-list"></ul>
             </div>
-            <!-- <ul class="stored-city" id="searched-city"></ul>
-            <button id="clear-button" class="button is-info" type="submit">Clear Searches</button>
- -->
         </div>
     </div>
 
 
 
     <!-- adding chart section -->
-    <div class="container chartclass">
+    <div id="chart-section" class="container chartclass">
         <div class="columns is-centered ">
             <div class="column is-two-thirds">
                 <!-- chart elements go here -->
             </div>
         </div>
     </div>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/chart.js"></script>
     <script src="./assets/js/convert.js"></script>
