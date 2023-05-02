@@ -3,17 +3,42 @@ $(function () {
         $("#convert-tab").addClass("is-active");
         $("#charts-tab").removeClass("is-active");
     });
+    displayCurrencyButtons();
     $("#convertbtn").click(function () {
         let amount = $("#amount-ta").val();
         let fromCountry = $("#dropdown1").val();
         let toCountry = $("#dropdown2").val();
-        /* $("#outputarea").html("<strong>New text goes here</strong>");  */
-        if (!amount || isNaN(amount)) {
+        if (isNaN(amount)) {
             $("#text-error-value").html("<strong>Please enter a valid amount</strong>");
             return;
         }
-        getConvertdata(amount, fromCountry, toCountry);
+        else if(!amount){
+            amount=1;
+        }
+        //getConvertdata(amount, fromCountry, toCountry);
+        addLocal(fromCountry,toCountry);
     });
+    function displayCurrencyButtons() {
+        const currencyList = JSON.parse(localStorage.getItem('currencyList')) || [];
+        currencyList.forEach(({ from, to }) => {
+          const button = $('<button>').text(`${from} to ${to}`).click(() => {
+            //$("#dropdown1").val(from);
+            //$("#dropdown2").val(to);
+            getConvertdata(1,from,to);
+          });
+          $('#button-container').append(button);
+        });
+      }      
+
+    function addLocal(fromCountry, toCountry) {
+        let currencyList = [];
+        if (localStorage.getItem("currencyList")) {
+          currencyList = JSON.parse(localStorage.getItem("currencyList"));
+        }
+        currencyList.push({ from: fromCountry, to: toCountry });
+        localStorage.setItem("currencyList", JSON.stringify(currencyList));
+      }
+      
 
     function getConvertdata(amount, fromCountry, toCountry) {
         $("#text-error-value").html("");

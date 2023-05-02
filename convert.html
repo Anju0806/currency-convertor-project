@@ -23,7 +23,7 @@
     </div>
 
     <!-- convert or chart toggle section -->
-    <div class="tabs is-centered is-boxed">
+    <div class="tabs is-centered is-boxed mb-0">
         <ul>
             <li id="convert-tab" class="is-active">
                 <a> <span class="material-symbols-rounded">currency_exchange</span>
@@ -43,7 +43,7 @@
         <div class="field is-grouped">
             <div class="control">
                 <label class="label">Amount</label>
-                <input id="amount-ta" class="input" type="text" placeholder="">
+                <input id="amount-ta" class="input" type="text" placeholder="1">
                 <p id="text-error-value" class="text"> </p>
             </div>
             <div class="control">
@@ -102,66 +102,83 @@
                 <i class="fa-solid fa-arrow-right-arrow-left" style="color: #3e81f4;"></i>
             </div>
             <div class="control">
-                <label class="label">To</label>
-                <div class="select">
-                    <select id="dropdown2">
-                        <option value="USD">USD - United States Dollar</option>
-                        <option value="EUR">EUR - Euro</option>
-                        <option value="GBP">GBP - British Pound Sterling</option>
-                        <option value="AUD">AUD - Australian Dollar</option>
-                        <option value="CAD">CAD - Canadian Dollar</option>
-                        <option value="JPY">JPY - Japanese Yen</option>
-                        <option value="CHF">CHF - Swiss Franc</option>
-                        <option value="CNY">CNY - Chinese Yuan</option>
-                        <option value="SEK">SEK - Swedish Krona</option>
-                        <option value="NZD">NZD - New Zealand Dollar</option>
-                        <option value="MXN">MXN - Mexican Peso</option>
-                        <option value="SGD">SGD - Singapore Dollar</option>
-                        <option value="HKD">HKD - Hong Kong Dollar</option>
-                        <option value="NOK">NOK - Norwegian Krone</option>
-                        <option value="KRW">KRW - South Korean Won</option>
-                        <option value="TRY">TRY - Turkish Lira</option>
-                        <option value="RUB">RUB - Russian Ruble</option>
-                        <option value="BRL">BRL - Brazilian Real</option>
-                        <option value="INR">INR - Indian Rupee</option>
-                        <option value="ZAR">ZAR - South African Rand</option>
-                        <option value="AED">AED - United Arab Emirates Dirham</option>
-                        <option value="AFN">AFN - Afghan Afghani</option>
-                        <option value="ALL">ALL - Albanian Lek</option>
-                        <option value="AMD">AMD - Armenian Dram</option>
-                        <option value="ANG">ANG - Netherlands Antillean Guilder</option>
-                        <option value="AOA">AOA - Angolan Kwanza</option>
-                        <option value="ARS">ARS - Argentine Peso</option>
-                        <option value="AWG">AWG - Aruban Florin</option>
-                        <option value="AZN">AZN - Azerbaijani Manat</option>
-                        <option value="BAM">BAM - Bosnia-Herzegovina Convertible Mark</option>
-                        <option value="BBD">BBD - Barbadian Dollar</option>
-                        <option value="BDT">BDT - Bangladeshi Taka</option>
-                        <option value="BGN">BGN - Bulgarian Lev</option>
-                        <option value="BHD">BHD - Bahraini Dinar</option>
-                        <option value="BIF">BIF - Burundian Franc</option>
-                        <option value="BMD">BMD - Bermudan Dollar</option>
-                        <option value="BND">BND - Brunei Dollar</option>
-                        <option value="BOB">BOB - Bolivian Boliviano</option>
-                        <option value="BSD">BSD - Bahamian Dollar</option>
-                        <option value="BTC">BTC - Bitcoin</option>
-                        <option value="BTN">BTN - Bhutanese Ngultrum</option>
-                        <option value="BWP">BWP - Botswanan Pula</option>
-                        <option value="BYN">BYN - New Belarusian Ruble</option>
-                        <option value="BYR">BYR - Belarusian Ruble</option>
-
-                    </select>
+                <div>
+                    <label class="label">To</label>
+                    <div class="select">
+                        <select id="dropdown2">
+                            <option value="USD">USD - United States Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound Sterling</option>
+                            <option value="AUD">AUD - Australian Dollar</option>
+                            <option value="CAD">CAD - Canadian Dollar</option>
+                            <option value="JPY">JPY - Japanese Yen</option>
+                            <option value="CHF">CHF - Swiss Franc</option>
+                            <option value="CNY">CNY - Chinese Yuan</option>
+                            <option value="SEK">SEK - Swedish Krona</option>
+                            <option value="NZD">NZD - New Zealand Dollar</option>
+                            <option value="MXN">MXN - Mexican Peso</option>
+                            <option value="SGD">SGD - Singapore Dollar</option>
+                            <option value="HKD">HKD - Hong Kong Dollar</option>
+                            <option value="NOK">NOK - Norwegian Krone</option>
+                            <option value="KRW">KRW - South Korean Won</option>
+                            <option value="TRY">TRY - Turkish Lira</option>
+                            <option value="RUB">RUB - Russian Ruble</option>
+                            <option value="BRL">BRL - Brazilian Real</option>
+                            <option value="INR">INR - Indian Rupee</option>
+                            <option value="ZAR">ZAR - South African Rand</option>
+                            <option value="AED">AED - United Arab Emirates Dirham</option>
+                            <option value="AFN">AFN - Afghan Afghani</option>
+                            <option value="ALL">ALL - Albanian Lek</option>
+                            <option value="AMD">AMD - Armenian Dram</option>
+                            <option value="ANG">ANG - Netherlands Antillean Guilder</option>
+                            <option value="AOA">AOA - Angolan Kwanza</option>
+                            <option value="ARS">ARS - Argentine Peso</option>
+                            <option value="AWG">AWG - Aruban Florin</option>
+                            <option value="AZN">AZN - Azerbaijani Manat</option>
+                            <option value="BAM">BAM - Bosnia-Herzegovina Convertible Mark</option>
+                            <option value="BBD">BBD - Barbadian Dollar</option>
+                            <option value="BDT">BDT - Bangladeshi Taka</option>
+                            <option value="BGN">BGN - Bulgarian Lev</option>
+                            <option value="BHD">BHD - Bahraini Dinar</option>
+                            <option value="BIF">BIF - Burundian Franc</option>
+                            <option value="BMD">BMD - Bermudan Dollar</option>
+                            <option value="BND">BND - Brunei Dollar</option>
+                            <option value="BOB">BOB - Bolivian Boliviano</option>
+                            <option value="BSD">BSD - Bahamian Dollar</option>
+                            <option value="BTC">BTC - Bitcoin</option>
+                            <option value="BTN">BTN - Bhutanese Ngultrum</option>
+                            <option value="BWP">BWP - Botswanan Pula</option>
+                            <option value="BYN">BYN - New Belarusian Ruble</option>
+                            <option value="BYR">BYR - Belarusian Ruble</option>
+                        </select>
+                    
+                    </div>
                 </div>
+                <button id="convertbtn" class="button is-info mt-5 ">Convert</button>
             </div>
-            <div class="control">
+           <!--  <div class="control">
                 <button id="convertbtn" class="button is-info">Convert</button>
-            </div>
+            </div> -->
         </div>
         <div class="field is-grouped">
             <div class="control">
                 <p id="outputarea" class="text-result"></p>
                 <date id="datehere"></date>
             </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <label class="label">Popular Currency Pairings</label>
+                
+
+            </div>
+            <div class="control">
+                <label class="label">Recent Searches</label>
+                <div id="button-container"></div>
+            </div>
+            <!-- <ul class="stored-city" id="searched-city"></ul>
+            <button id="clear-button" class="button is-info" type="submit">Clear Searches</button>
+ -->
         </div>
     </div>
 
