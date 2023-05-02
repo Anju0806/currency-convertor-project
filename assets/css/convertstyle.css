@@ -8,11 +8,24 @@
 .tabs a {
     color:white;
 }
+.b{
+    border: #040101;
+}
 
-
-
-
-
+.wrapper{
+    margin-top: 1rem;
+    width:75% !important;
+}
+.dropdowno{
+    width: 100%;
+}
+.dot{
+   width:25px;
+    border-radius: 90%;
+    border:1px solid #184589;
+    position: relative;
+    top:100px !important;
+}
 
 
 

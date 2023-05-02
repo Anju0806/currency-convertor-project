@@ -3,7 +3,7 @@ $(function () {
         $("#convert-tab").addClass("is-active");
         $("#charts-tab").removeClass("is-active");
     });
-    displayCurrencyButtons();
+    
     $("#convertbtn").click(function () {
         let amount = $("#amount-ta").val();
         let fromCountry = $("#dropdown1").val();
@@ -15,27 +15,35 @@ $(function () {
         else if(!amount){
             amount=1;
         }
-        //getConvertdata(amount, fromCountry, toCountry);
-        addLocal(fromCountry,toCountry);
+        getConvertdata(amount, fromCountry, toCountry);
+        
     });
-    function displayCurrencyButtons() {
+    
+    function displaySearches() {
         const currencyList = JSON.parse(localStorage.getItem('currencyList')) || [];
+      
         currencyList.forEach(({ from, to }) => {
-          const button = $('<button>').text(`${from} to ${to}`).click(() => {
-            //$("#dropdown1").val(from);
-            //$("#dropdown2").val(to);
-            getConvertdata(1,from,to);
-          });
-          $('#button-container').append(button);
+          const link = $('<a>').attr('href', '#').click(() => {
+            getConvertdata(1, from, to);
+          }).text(`${from} to ${to}`);
+      
+          const listItem = $('<li>').append(link);
+      
+          $('#menu-container').append(listItem);
         });
-      }      
+      }
+         
 
     function addLocal(fromCountry, toCountry) {
         let currencyList = [];
+        const max_list=8;
         if (localStorage.getItem("currencyList")) {
           currencyList = JSON.parse(localStorage.getItem("currencyList"));
         }
         currencyList.push({ from: fromCountry, to: toCountry });
+        if(currencyList.length>max_list){
+            currencyList = currencyList.slice(-max_list);
+        }
         localStorage.setItem("currencyList", JSON.stringify(currencyList));
       }
       
@@ -57,11 +65,11 @@ $(function () {
                 const rate = result.info.rate;
                 const currenttimestamp = result.info.timestamp;
                 const dateObj = new Date(currenttimestamp * 1000); // Create a new Date object from the Unix timestamp
-
-                /*  $("#outputarea").text(amount+" "+fromCountry+" = "+convertedAmount+" "+toCountry); */
                 $("#outputarea").html("<br>" + "<strong>" + amount + " " + fromCountry + " = " + convertedAmount + " " + toCountry + "</strong>");
                 $("#outputarea").append("<br>" + " 1 " + fromCountry + " = " + rate + " " + toCountry);
-                $("#datehere").html("<br>" + " Last updated on " + dateObj);
+                $("#datehere").html("<br>" + " Last updated on " + dateObj.toUTCString());
+                addLocal(fromCountry,toCountry);
+                displaySearches();
             })
             .catch(error => console.log('error', error));
     }
