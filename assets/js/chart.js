@@ -1,36 +1,51 @@
 $(function () {
-$(document).ready(function() {
-    $("#charts-tab").click(function() {
-      $("#charts-tab").addClass("is-active");
-      $("#convert-tab").removeClass("is-active");
 
-      // hide convert section
-      $("#convert-section").addClass('is-hidden');
-      // show chart section
-      $("#chart-section").removeClass('is-hidden');
-    });
+  const CHARTS_TAB_FLAG = 'chartsTabActive';
+  $("#charts-tab").click(function () {
+    $("#charts-tab").addClass("is-active");
+    $("#convert-tab").removeClass("is-active");
+    $("#convert-section").addClass('is-hidden');
+    $("#chart-section").removeClass('is-hidden');
+    
+  });
+  
+  //display chart button click event
+  $("#chartbtn").click(function () {
+    let fromCountry = $("#dropdown3").val();
+    let toCountry = $("#dropdown4").val();
+    displaychart(fromCountry,toCountry);
+
   });
 
+  //toggle arrow click event
+  $("#arrow-icon1").click(function () {
+    let fromCountry = $("#dropdown3").val();
+    let toCountry = $("#dropdown4").val();
+    $("#dropdown3").val(toCountry);
+    $("#dropdown4").val(fromCountry);
+    $("#dropdown3").trigger('change');
+    $("#dropdown4").trigger('change');
+  });
 
+  //call api and add chart
+  function displaychart(fromCountry,toCountry){
+    const currentDate = new Date().toISOString().slice(0, 10);
+    let myHeaders = new Headers();
+    myHeaders.append("apikey", "ReKdzFAIwiuiMvUgxXgvSlqztSlMlDUc");
 
+    let requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+        headers: myHeaders
+    };
+    console.log(currentDate);
+    //const url = `https://api.exchangeratesapi.io/v1/timeseries?start_date=2022-09-01&end_date=${currentDate}&base=${fromCountry}&symbols=${toCountry}`;
+    fetch(`https://api.apilayer.com/exchangerates_data/timeseries?start_date=2022-09-01&end_date=${currentDate}&base=${fromCountry}&symbols=${toCountry}`, requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        console.log(result);
+    })
+    .catch(error => console.log('error', error));
+}
 
-  const chart = LightweightCharts.createChart($("#chart-section")[0], { width: 400, height: 300 });
-const lineSeries = chart.addLineSeries();
-lineSeries.setData([
-    { time: '2019-04-11', value: 80.01 },
-    { time: '2019-04-12', value: 96.63 },
-    { time: '2019-04-13', value: 76.64 },
-    { time: '2019-04-14', value: 81.89 },
-    { time: '2019-04-15', value: 74.43 },
-    { time: '2019-04-16', value: 80.01 },
-    { time: '2019-04-17', value: 96.63 },
-    { time: '2019-04-18', value: 76.64 },
-    { time: '2019-04-19', value: 81.89 },
-    { time: '2019-04-20', value: 74.43 },
-]);
-
-
-
-
-
-})
+});

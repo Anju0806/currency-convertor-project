@@ -7,6 +7,7 @@ $(function () {
         $("#chart-section").addClass('is-hidden');
         $("#convert-section").removeClass('is-hidden');
     });
+   
 
     //toggle arrow click event
     $("#arrow-icon").click(function () {
@@ -136,12 +137,10 @@ $(function () {
             headers: myHeaders
         };
         const url = `https://api.apilayer.com/exchangerates_data/convert?to=${toCountry}&from=${fromCountry}&amount=${amount}`;
-        // TODO: show loader 
         showLoader();
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(result => {
-                // TODO: hide loader
                 hideLoader();
                 const convertedAmount = result.result;
                 const rate = result.info.rate;

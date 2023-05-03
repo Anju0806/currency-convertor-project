@@ -14,7 +14,12 @@
 
 .wrapper{
     margin-top: 1rem;
-    width:75% !important;
+    width:70% !important;
+}
+
+.wrapper1{
+    margin-top: 1rem;
+    width:70% !important;
 }
 .dropdowno{
     width: 100%;
