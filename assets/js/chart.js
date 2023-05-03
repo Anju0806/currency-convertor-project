@@ -6,7 +6,14 @@ $(function () {
     $("#convert-tab").removeClass("is-active");
     $("#convert-section").addClass('is-hidden');
     $("#chart-section").removeClass('is-hidden');
-    
+
+    //to make same the selection in dropdowns(convert section and chart section)
+    let fromCountry = $("#dropdown1").val();
+    let toCountry = $("#dropdown2").val();
+    $("#dropdown3").val(fromCountry);
+    $("#dropdown4").val(toCountry);
+    $("#dropdown3").trigger('change');
+    $("#dropdown4").trigger('change');
   });
   
   //display chart button click event
@@ -29,6 +36,7 @@ $(function () {
 
   //call api and add chart
   function displaychart(fromCountry,toCountry){
+    const start_date = "2022-09-01";
     const currentDate = new Date().toISOString().slice(0, 10);
     let myHeaders = new Headers();
     myHeaders.append("apikey", "ReKdzFAIwiuiMvUgxXgvSlqztSlMlDUc");
@@ -38,12 +46,14 @@ $(function () {
       redirect: 'follow',
         headers: myHeaders
     };
-    console.log(currentDate);
-    //const url = `https://api.exchangeratesapi.io/v1/timeseries?start_date=2022-09-01&end_date=${currentDate}&base=${fromCountry}&symbols=${toCountry}`;
-    fetch(`https://api.apilayer.com/exchangerates_data/timeseries?start_date=2022-09-01&end_date=${currentDate}&base=${fromCountry}&symbols=${toCountry}`, requestOptions)
+    fetch(`https://api.apilayer.com/exchangerates_data/timeseries?start_date=${start_date}&end_date=${currentDate}&base=${fromCountry}&symbols=${toCountry}`, requestOptions)
     .then(response => response.json())
     .then(result => {
-        console.log(result);
+      lineSeries.clear();
+      const data = Object.entries(result.rates).map(([date, rates]) => ({ time: date, value: rates[toCountry] }));
+      const chart = LightweightCharts.createChart($("#chart-section")[0], { width: 400, height: 300 });
+      const lineSeries = chart.addLineSeries();
+      lineSeries.setData(data);
     })
     .catch(error => console.log('error', error));
 }
