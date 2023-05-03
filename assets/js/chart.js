@@ -49,10 +49,11 @@ $(function () {
     fetch(`https://api.apilayer.com/exchangerates_data/timeseries?start_date=${start_date}&end_date=${currentDate}&base=${fromCountry}&symbols=${toCountry}`, requestOptions)
     .then(response => response.json())
     .then(result => {
-      lineSeries.clear();
+      
       const data = Object.entries(result.rates).map(([date, rates]) => ({ time: date, value: rates[toCountry] }));
       const chart = LightweightCharts.createChart($("#chart-section")[0], { width: 400, height: 300 });
       const lineSeries = chart.addLineSeries();
+      lineSeries.setData([]);
       lineSeries.setData(data);
     })
     .catch(error => console.log('error', error));
