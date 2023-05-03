@@ -41,7 +41,7 @@ $(function () {
     function displayPopular() {
         $('#menu-popular').empty();
         let fromCountry = $("#dropdown1").val();
-        const tc = ["EUR", "USD", "CHF", "JPY", "GBP", "AUD", "INR", "NZD", "SEK", "CAD"];
+        const tc = ["EUR", "USD", "GBP", "AUD", "INR", "NZD", "SEK", "CAD"];
         tc.forEach((toCountry) => {
             if (fromCountry == toCountry) {
                 return;
@@ -73,29 +73,34 @@ $(function () {
                 $("#dropdown2").trigger('change');
                 getConvertdata(1, from, to);
             }).text(`${from} to ${to}`);
-
-            const clearBtn = $('<button>').attr('type', 'button').addClass('delete').click(() => {
+            const clearBtn = $('<button>').attr('type', 'button').addClass('delete is-hidden').click(() => {
                 removeLocal(from, to);
                 displaySearches();
             }).text('Clear');
+            // Add mouseenter and mouseleave event listeners to show/hide the clear button
+            link.on('mouseenter', () => {
+                clearBtn.removeClass('is-hidden');
+            });
+            link.on('mouseleave', () => {
+                clearBtn.addClass('is-hidden');
+            });
             const listItem = $('<li>').append(clearBtn, link);
             $('#menu-recent-searches').prepend(listItem);
         });
     }
 
+    //bulma loader show and hide functions
     function showLoader() {
-        /*  <progress class="progress is-small is-info" max="100">15%</progress> */
-
+        $("#progress").removeClass('is-hidden');
     }
-
     function hideLoader() {
-
+        $("#progress").addClass('is-hidden');
     }
 
     //adding fromcountry and tocountry to local storage
     function addLocal(fromCountry, toCountry) {
         let currencyList = [];
-        const max_list = 6;
+        const max_list = 7;
         if (localStorage.getItem("currencyList")) {
             currencyList = JSON.parse(localStorage.getItem("currencyList"));
         }
@@ -155,13 +160,13 @@ $(function () {
     // Add a media query to rotate the arrow icon
     const mediaQuery = window.matchMedia('(max-width: 768px)');
     function handleMediaQuery(event) {
-      if (event.matches) {
-        $("#arrow-icon").addClass('rotate');
-      } else {
-        $("#arrow-icon").removeClass('rotate');
-      }
+        if (event.matches) {
+            $("#arrow-icon").addClass('rotate');
+        } else {
+            $("#arrow-icon").removeClass('rotate');
+        }
     }
     mediaQuery.addListener(handleMediaQuery);
     handleMediaQuery(mediaQuery);
-  
+
 });
