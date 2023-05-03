@@ -10,6 +10,10 @@ $(document).ready(function() {
       $("#chart-section").removeClass('is-hidden');
     });
   });
+
+
+
+
   const chart = LightweightCharts.createChart($("#chart-section")[0], { width: 400, height: 300 });
 const lineSeries = chart.addLineSeries();
 lineSeries.setData([

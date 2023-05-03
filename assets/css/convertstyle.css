@@ -19,13 +19,13 @@
 .dropdowno{
     width: 100%;
 }
-.dot{
-   width:25px;
-    border-radius: 90%;
-    border:1px solid #184589;
-    position: relative;
-    top:100px !important;
-}
+
+@media (max-width: 768px) {
+    .rotate {
+      transform: rotate(90deg);
+    }
+  }
+  
 
 
 
