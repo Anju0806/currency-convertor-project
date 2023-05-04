@@ -7,7 +7,12 @@ $(function () {
         $("#chart-section").addClass('is-hidden');
         $("#convert-section").removeClass('is-hidden');
     });
-   
+    const icon = $('<i>').addClass('fas fa-plus');
+    const icon1 = $('<i>').addClass('fas fa-plus');
+    icon.addClass('pl-6');
+    icon.addClass('pl-6');
+    $('.box').append(icon);
+    $('.box').append(icon1);
 
     //toggle arrow click event
     $("#arrow-icon").click(function () {
@@ -62,12 +67,11 @@ $(function () {
     
     //fetching local storage and adding click event to each search element
     function displaySearches() {
-        $("#recent-searches").removeClass('is-hidden');
-        const currencyList = JSON.parse(localStorage.getItem('currencyList')) || [];
+        $("#recent-searches").removeClass("is-hidden");
+        const currencyList = JSON.parse(localStorage.getItem("currencyList")) || [];
         $('#menu-recent-searches').empty();
-
+      
         currencyList.forEach(({ from, to }) => {
-            const listItem = $('<li>');
             const link = $('<a>').attr('href', '#').click(() => {
                 // TODO: optimize??
                 $("#dropdown1").val(from);
@@ -90,8 +94,11 @@ $(function () {
             });
             listItem.append($('<div>').addClass('box').append(link));
             $('#menu-recent-searches').prepend(listItem);
+>>>>>>> 2c3ab86405eb36a404af7c354ec40054785ee06a
         });
-    }
+      }
+      
+    
 
     //bulma loader show and hide functions
     function showLoader() {

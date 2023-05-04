@@ -31,6 +31,7 @@ body {
 .wrapper{
     
     width:70% !important;
+      
 }
 .box {
     margin-bottom: .5rem !important;
@@ -40,11 +41,19 @@ body {
 .wrapper1{
     margin-top: 1rem;
     width:70% !important;
+    
 }
+
+
 .dropdowno{
     width: 100%;
 }
 
+li.is-hoverable:hover .delete {
+    display: inline-block;
+}
+
+  
 @media (max-width: 768px) {
     .rotate {
       transform: rotate(90deg);
