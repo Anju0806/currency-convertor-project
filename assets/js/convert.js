@@ -7,16 +7,12 @@ $(function () {
         $("#chart-section").addClass('is-hidden');
         $("#convert-section").removeClass('is-hidden');
     });
-   
 
     //toggle arrow click event
     $("#arrow-icon").click(function () {
         let fromCountry = $("#dropdown1").val();
         let toCountry = $("#dropdown2").val();
-        $("#dropdown1").val(toCountry);
-        $("#dropdown2").val(fromCountry);
-        $("#dropdown1").trigger('change');
-        $("#dropdown2").trigger('change');
+        addToDropdowns(toCountry, fromCountry)
     });
 
     //convert button click event
@@ -38,28 +34,30 @@ $(function () {
     displaySearches();
     displayPopular();
 
-
     //dispaly the popular conversions with the selected from country
     function displayPopular() {
         $('#menu-popular').empty();
         let fromCountry = $("#dropdown1").val();
-        const tc = [ "GBP", "INR", "NZD", "USD","EUR","AUD"];
+        const tc = ["GBP", "INR", "NZD", "USD", "EUR", "AUD"];
         tc.forEach((toCountry) => {
             if (fromCountry == toCountry) {
                 return;
             }
             const link = $('<a>').attr('href', '#').click(() => {
-                $("#dropdown1").val(fromCountry);
-                $("#dropdown2").val(toCountry);
-                $("#dropdown1").trigger('change');
-                $("#dropdown2").trigger('change');
+                addToDropdowns(fromCountry, toCountry);
                 getConvertdata(1, fromCountry, toCountry);
             }).text(`${fromCountry} to ${toCountry} `);
-             const listItem = $('<li>').append($('<div>').addClass('box').append(link));
-            $('#menu-popular').prepend(listItem); 
+            const listItem = $('<li>').append($('<div>').addClass('box').append(link));
+            $('#menu-popular').prepend(listItem);
         });
     }
-    
+    function addToDropdowns(fromCountry, toCountry) {
+        $("#dropdown1").val(fromCountry);
+        $("#dropdown2").val(toCountry);
+        $("#dropdown1").trigger('change');
+        $("#dropdown2").trigger('change');
+    }
+
     //fetching local storage and adding click event to each search element
     function displaySearches() {
         $("#recent-searches").removeClass('is-hidden');
@@ -69,19 +67,15 @@ $(function () {
         currencyList.forEach(({ from, to }) => {
             const listItem = $('<li>');
             const link = $('<a>').attr('href', '#').click(() => {
-                // TODO: optimize??
-                $("#dropdown1").val(from);
-                $("#dropdown2").val(to);
-                $("#dropdown1").trigger('change');
-                $("#dropdown2").trigger('change');
+                addToDropdowns(fromCountry, toCountry);
                 getConvertdata(1, from, to);
             }).text(`${from} to ${to}`);
-            
+
             const clearBtn = $('<button>').attr('type', 'button').addClass('delete is-hidden').click(() => {
                 removeLocal(from, to);
                 listItem.remove();
             }).text('Clear');
-            link.append(clearBtn);
+            link.append('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', clearBtn);
             link.on('mouseenter', () => {
                 clearBtn.removeClass('is-hidden');
             });
@@ -100,6 +94,14 @@ $(function () {
     function hideLoader() {
         $("#progress").addClass('is-hidden');
     }
+    //show and disable functions for convert button while data is retrieved from API.
+    function disableConvertButton() {
+        $("#convertbtn").prop("disabled", true);
+    }
+    function activateConvertButton() {
+        $("#convertbtn").prop("disabled", false);
+    }
+
 
     //adding fromcountry and tocountry to local storage
     function addLocal(fromCountry, toCountry) {
@@ -141,10 +143,12 @@ $(function () {
         };
         const url = `https://api.apilayer.com/exchangerates_data/convert?to=${toCountry}&from=${fromCountry}&amount=${amount}`;
         showLoader();
+        disableConvertButton();
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(result => {
                 hideLoader();
+                activateConvertButton();
                 console.log(result);
                 const convertedAmount = result.result;
                 const rate = result.info.rate;
