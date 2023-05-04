@@ -16,6 +16,10 @@
     margin-top: 1rem;
     width:70% !important;
 }
+.box {
+    margin-bottom: .5rem !important;
+    padding:.5rem;
+  }
 
 .wrapper1{
     margin-top: 1rem;

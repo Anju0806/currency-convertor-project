@@ -39,7 +39,7 @@ $(function () {
     const start_date = "2022-09-01";
     const currentDate = new Date().toISOString().slice(0, 10);
     let myHeaders = new Headers();
-    myHeaders.append("apikey", "ReKdzFAIwiuiMvUgxXgvSlqztSlMlDUc");
+    myHeaders.append("apikey", "Ii9YZg90vrKmPRI0gEbU0YXsWgfyM6X5");
 
     let requestOptions = {
       method: 'GET',
