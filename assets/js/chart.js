@@ -34,29 +34,46 @@ $(function () {
     $("#dropdown4").trigger('change');
   });
 
-  //call api and add chart
-  function displaychart(fromCountry,toCountry){
-    const start_date = "2022-09-01";
-    const currentDate = new Date().toISOString().slice(0, 10);
-    let myHeaders = new Headers();
-    myHeaders.append("apikey", "Ii9YZg90vrKmPRI0gEbU0YXsWgfyM6X5");
 
-    let requestOptions = {
-      method: 'GET',
-      redirect: 'follow',
-        headers: myHeaders
-    };
-    fetch(`https://api.apilayer.com/exchangerates_data/timeseries?start_date=${start_date}&end_date=${currentDate}&base=${fromCountry}&symbols=${toCountry}`, requestOptions)
-    .then(response => response.json())
-    .then(result => {
-      
-      const data = Object.entries(result.rates).map(([date, rates]) => ({ time: date, value: rates[toCountry] }));
-      const chart = LightweightCharts.createChart($("#chart-section")[0], { width: 400, height: 300 });
-      const lineSeries = chart.addLineSeries();
-      lineSeries.setData([]);
-      lineSeries.setData(data);
-    })
-    .catch(error => console.log('error', error));
-}
+//call api and add chart
+let chartDisplayed = false;
 
-});
+function displaychart(fromCountry,toCountry){
+   // Check if chart has already been displayed
+   if (chartDisplayed) {
+    return;
+  }
+  const start_date = "2022-09-01";
+  const currentDate = new Date().toISOString().slice(0, 10);
+  let myHeaders = new Headers();
+  myHeaders.append("apikey", "UhycKQHfsiHc8t8pGS0Sh4U49r0C7Kct");
+  
+  let requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+      headers: myHeaders
+  };
+  fetch(`https://api.apilayer.com/exchangerates_data/timeseries?start_date=${start_date}&end_date=${currentDate}&base=${fromCountry}&symbols=${toCountry}`, requestOptions)
+  .then(response => response.json())
+  .then(result => {
+    const data = Object.entries(result.rates).map(([date, rates]) => ({ time: date, value: rates[toCountry] }));
+    const chart = LightweightCharts.createChart($("#chart-section")[0]);
+    const lineSeries = chart.addLineSeries();
+    const chartProperties ={
+      width:1500,
+      height:800 ,
+      timescale:{
+        timeVisible:true,
+        secondVisible:false,
+      }
+    }
+    lineSeries.setData([]);
+    lineSeries.setData(data);
+
+    // Set chartDisplayed flag to true
+    chartDisplayed = true;
+  })
+  .catch(error => console.log('error', error));
+  }
+  });
+  

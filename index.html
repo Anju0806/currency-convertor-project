@@ -99,3 +99,41 @@ $(function () {
             .catch(error => console.log('error', error));
     }
 });
+
+
+
+//call api and add chart
+function displaychart(fromCountry,toCountry){
+const start_date = "2022-09-01";
+const currentDate = new Date().toISOString().slice(0, 10);
+let myHeaders = new Headers();
+myHeaders.append("apikey", "UhycKQHfsiHc8t8pGS0Sh4U49r0C7Kct");
+
+let requestOptions = {
+  method: 'GET',
+  redirect: 'follow',
+    headers: myHeaders
+};
+fetch(`https://api.apilayer.com/exchangerates_data/timeseries?start_date=${start_date}&end_date=${currentDate}&base=${fromCountry}&symbols=${toCountry}`, requestOptions)
+.then(response => response.json())
+.then(result => {
+  
+  const data = Object.entries(result.rates).map(([date, rates]) => ({ time: date, value: rates[toCountry] }));
+  const chart = LightweightCharts.createChart($("#chart-section")[0]);
+  const lineSeries = chart.addLineSeries();
+  const chartProperties ={
+
+    width:1000,
+    height:500 ,
+    timescale:{
+      timeVisible:true,
+      secondVisible:false,
+    }
+  }
+  lineSeries.setData([]);
+  lineSeries.setData(data);
+})
+.catch(error => console.log('error', error));
+}
+
+});

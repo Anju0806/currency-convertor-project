@@ -1,16 +1,24 @@
 
 .hero.is-primary{
-    background-color: #184589;
+    background-color: #1f467cbd;
 }
+body {
+    background: url(../images/blue_world_map.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    height: 100vh;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+    }
 .tabs ul {
-    background-color: #184589;
+    background-color: #060b3baf;
 }
 .tabs a {
     color:white;
 }
 .b{
-    border: #040101;
-}
+    border: black;
+   }
 
 .wrapper{
     margin-top: 1rem;
@@ -34,7 +42,4 @@
       transform: rotate(90deg);
     }
   }
-  
-
-
 
