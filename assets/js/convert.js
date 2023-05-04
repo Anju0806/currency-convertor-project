@@ -7,12 +7,7 @@ $(function () {
         $("#chart-section").addClass('is-hidden');
         $("#convert-section").removeClass('is-hidden');
     });
-    const icon = $('<i>').addClass('fas fa-plus');
-    const icon1 = $('<i>').addClass('fas fa-plus');
-    icon.addClass('pl-6');
-    icon.addClass('pl-6');
-    $('.box').append(icon);
-    $('.box').append(icon1);
+   
 
     //toggle arrow click event
     $("#arrow-icon").click(function () {
@@ -42,13 +37,13 @@ $(function () {
     //function calls
     displaySearches();
     displayPopular();
-    displayPopularConversions();
+
 
     //dispaly the popular conversions with the selected from country
     function displayPopular() {
         $('#menu-popular').empty();
         let fromCountry = $("#dropdown1").val();
-        const tc = ["EUR", "USD", "GBP", "AUD", "INR", "NZD", "SEK", "CAD"];
+        const tc = [ "GBP", "INR", "NZD", "USD","EUR","AUD"];
         tc.forEach((toCountry) => {
             if (fromCountry == toCountry) {
                 return;
@@ -60,8 +55,6 @@ $(function () {
                 $("#dropdown2").trigger('change');
                 getConvertdata(1, fromCountry, toCountry);
             }).text(`${fromCountry} to ${toCountry} `);
-            const icon = $('<span>').addClass('icon').html('<i class="fa fa-chevron-right" aria-hidden="true"></i>');
-            link.append(icon);
              const listItem = $('<li>').append($('<div>').addClass('box').append(link));
             $('#menu-popular').prepend(listItem); 
         });
@@ -74,6 +67,7 @@ $(function () {
         $('#menu-recent-searches').empty();
 
         currencyList.forEach(({ from, to }) => {
+            const listItem = $('<li>');
             const link = $('<a>').attr('href', '#').click(() => {
                 // TODO: optimize??
                 $("#dropdown1").val(from);
@@ -82,21 +76,19 @@ $(function () {
                 $("#dropdown2").trigger('change');
                 getConvertdata(1, from, to);
             }).text(`${from} to ${to}`);
-            const icon = $('<span>').addClass('icon').html('<i class="fa fa-chevron-right" aria-hidden="true"></i>');
-            link.append(icon);
-             /* const clearBtn = $('<button>').attr('type', 'button').addClass('delete is-hidden').click(() => {
+            
+            const clearBtn = $('<button>').attr('type', 'button').addClass('delete is-hidden').click(() => {
                 removeLocal(from, to);
-                displaySearches();
+                listItem.remove();
             }).text('Clear');
-            // Add mouseenter and mouseleave event listeners to show/hide the clear button
+            link.append(clearBtn);
             link.on('mouseenter', () => {
                 clearBtn.removeClass('is-hidden');
             });
             link.on('mouseleave', () => {
                 clearBtn.addClass('is-hidden');
-            }); */
-            //const listItem = $('<li>').append($('<div>').addClass('box').append(clearBtn,link));
-            const listItem = $('<li>').append($('<div>').addClass('box').append(link));
+            });
+            listItem.append($('<div>').addClass('box').append(link));
             $('#menu-recent-searches').prepend(listItem);
         });
     }
@@ -112,7 +104,7 @@ $(function () {
     //adding fromcountry and tocountry to local storage
     function addLocal(fromCountry, toCountry) {
         let currencyList = [];
-        const max_list = 7;
+        const max_list = 5;
         if (localStorage.getItem("currencyList")) {
             currencyList = JSON.parse(localStorage.getItem("currencyList"));
         }
@@ -141,7 +133,7 @@ $(function () {
     function getConvertdata(amount, fromCountry, toCountry) {
         $("#text-error-value").html("");
         let myHeaders = new Headers();
-        myHeaders.append("apikey", "ReKdzFAIwiuiMvUgxXgvSlqztSlMlDUc");
+        myHeaders.append("apikey", "Ii9YZg90vrKmPRI0gEbU0YXsWgfyM6X5");
         let requestOptions = {
             method: 'GET',
             redirect: 'follow',
