@@ -7,7 +7,7 @@ $(function () {
         $("#chart-section").addClass('is-hidden');
         $("#convert-section").removeClass('is-hidden');
     });
-   
+
 
     //toggle arrow click event
     $("#arrow-icon").click(function () {
@@ -61,34 +61,31 @@ $(function () {
 
     //fetching local storage and adding click event to each search element
     function displaySearches() {
-        $("#recent-searches").removeClass('is-hidden');
-        const currencyList = JSON.parse(localStorage.getItem('currencyList')) || [];
+        $("#recent-searches").removeClass("is-hidden");
+        const currencyList = JSON.parse(localStorage.getItem("currencyList")) || [];
         $('#menu-recent-searches').empty();
-
+      
         currencyList.forEach(({ from, to }) => {
-            const link = $('<a>').attr('href', '#').click(() => {
-                // TODO: optimize??
-                $("#dropdown1").val(from);
-                $("#dropdown2").val(to);
-                $("#dropdown1").trigger('change');
-                $("#dropdown2").trigger('change');
-                getConvertdata(1, from, to);
-            }).text(`${from} to ${to}`);
-            const clearBtn = $('<button>').attr('type', 'button').addClass('delete is-hidden').click(() => {
-                removeLocal(from, to);
-                displaySearches();
-            }).text('Clear');
-            // Add mouseenter and mouseleave event listeners to show/hide the clear button
-            link.on('mouseenter', () => {
-                clearBtn.removeClass('is-hidden');
-            });
-            link.on('mouseleave', () => {
-                clearBtn.addClass('is-hidden');
-            });
-            const listItem = $('<li>').append(clearBtn, link);
-            $('#menu-recent-searches').prepend(listItem);
+          const link = $('<a>').attr('href', '#').click(() => {
+            // TODO: optimize??
+            $("#dropdown1").val(from);
+            $("#dropdown2").val(to);
+            $("#dropdown1").trigger('change');
+            $("#dropdown2").trigger('change');
+            getConvertdata(1, from, to);
+          }).text(`${from} to ${to}`);
+      
+          const clearBtn = $('<button>').attr('type', 'button').addClass('delete is-small').click(() => {
+            removeLocal(from, to);
+            displaySearches();
+          }).text('Delete');
+      
+          const listItem = $('<li>').addClass('is-flex is-hoverable').append(link, clearBtn);
+          $('#menu-recent-searches').prepend(listItem);
         });
-    }
+      }
+      
+    
 
     //bulma loader show and hide functions
     function showLoader() {

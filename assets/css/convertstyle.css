@@ -9,7 +9,7 @@ body {
     overflow: hidden;
     height: 100vh;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
-    }
+}
 .tabs ul {
     background-color: #060b3baf;
 }
@@ -23,16 +23,25 @@ body {
 .wrapper{
     margin-top: 1rem;
     width:70% !important;
+      
 }
 
 .wrapper1{
     margin-top: 1rem;
     width:70% !important;
+    
 }
+
+
 .dropdowno{
     width: 100%;
 }
 
+li.is-hoverable:hover .delete {
+    display: inline-block;
+}
+
+  
 @media (max-width: 768px) {
     .rotate {
       transform: rotate(90deg);

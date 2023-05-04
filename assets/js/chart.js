@@ -32,8 +32,7 @@ $(function () {
     $("#dropdown4").val(fromCountry);
     $("#dropdown3").trigger('change');
     $("#dropdown4").trigger('change');
-  });
-
+});
 
 //call api and add chart
 let chartDisplayed = false;
