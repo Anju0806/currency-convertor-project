@@ -19,6 +19,7 @@ body {
 
 .tabs ul {
     background-color: #c4c8d1e1;
+    
 
 }
 .tabs a {
@@ -33,9 +34,14 @@ body {
     width:70% !important;
 }
 .box {
+    display: flex;
+    -ms-flex-align: center;
+    flex-direction: column;
     margin-bottom: .5rem !important;
-    padding:.5rem;
+    padding: .5rem;
+      
   }
+  
 
 .wrapper1{
     margin-top: 1rem;
