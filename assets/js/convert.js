@@ -7,7 +7,16 @@ $(function () {
         $("#chart-section").addClass('is-hidden');
         $("#convert-section").removeClass('is-hidden');
     });
+<<<<<<< HEAD
 
+=======
+    const icon = $('<i>').addClass('fas fa-plus');
+    const icon1 = $('<i>').addClass('fas fa-plus');
+    icon.addClass('pl-6');
+    icon.addClass('pl-6');
+    $('.box').append(icon);
+    $('.box').append(icon1);
+>>>>>>> 2c3ab86405eb36a404af7c354ec40054785ee06a
 
     //toggle arrow click event
     $("#arrow-icon").click(function () {
@@ -37,6 +46,7 @@ $(function () {
     //function calls
     displaySearches();
     displayPopular();
+    displayPopularConversions();
 
     //dispaly the popular conversions with the selected from country
     function displayPopular() {
@@ -53,12 +63,14 @@ $(function () {
                 $("#dropdown1").trigger('change');
                 $("#dropdown2").trigger('change');
                 getConvertdata(1, fromCountry, toCountry);
-            }).text(`${fromCountry} to ${toCountry}`);
-            const listItem = $('<li>').append(link);
-            $('#menu-popular').prepend(listItem);
+            }).text(`${fromCountry} to ${toCountry} `);
+            const icon = $('<span>').addClass('icon').html('<i class="fa fa-chevron-right" aria-hidden="true"></i>');
+            link.append(icon);
+             const listItem = $('<li>').append($('<div>').addClass('box').append(link));
+            $('#menu-popular').prepend(listItem); 
         });
     }
-
+    
     //fetching local storage and adding click event to each search element
     function displaySearches() {
         $("#recent-searches").removeClass("is-hidden");
@@ -66,6 +78,7 @@ $(function () {
         $('#menu-recent-searches').empty();
       
         currencyList.forEach(({ from, to }) => {
+<<<<<<< HEAD
           const link = $('<a>').attr('href', '#').click(() => {
             // TODO: optimize??
             $("#dropdown1").val(from);
@@ -82,6 +95,32 @@ $(function () {
       
           const listItem = $('<li>').addClass('is-flex is-hoverable').append(link, clearBtn);
           $('#menu-recent-searches').prepend(listItem);
+=======
+            const link = $('<a>').attr('href', '#').click(() => {
+                // TODO: optimize??
+                $("#dropdown1").val(from);
+                $("#dropdown2").val(to);
+                $("#dropdown1").trigger('change');
+                $("#dropdown2").trigger('change');
+                getConvertdata(1, from, to);
+            }).text(`${from} to ${to}`);
+            const icon = $('<span>').addClass('icon').html('<i class="fa fa-chevron-right" aria-hidden="true"></i>');
+            link.append(icon);
+             /* const clearBtn = $('<button>').attr('type', 'button').addClass('delete is-hidden').click(() => {
+                removeLocal(from, to);
+                displaySearches();
+            }).text('Clear');
+            // Add mouseenter and mouseleave event listeners to show/hide the clear button
+            link.on('mouseenter', () => {
+                clearBtn.removeClass('is-hidden');
+            });
+            link.on('mouseleave', () => {
+                clearBtn.addClass('is-hidden');
+            }); */
+            //const listItem = $('<li>').append($('<div>').addClass('box').append(clearBtn,link));
+            const listItem = $('<li>').append($('<div>').addClass('box').append(link));
+            $('#menu-recent-searches').prepend(listItem);
+>>>>>>> 2c3ab86405eb36a404af7c354ec40054785ee06a
         });
       }
       
@@ -127,7 +166,7 @@ $(function () {
     function getConvertdata(amount, fromCountry, toCountry) {
         $("#text-error-value").html("");
         let myHeaders = new Headers();
-        myHeaders.append("apikey", "UhycKQHfsiHc8t8pGS0Sh4U49r0C7Kct");
+        myHeaders.append("apikey", "ReKdzFAIwiuiMvUgxXgvSlqztSlMlDUc");
         let requestOptions = {
             method: 'GET',
             redirect: 'follow',
@@ -139,6 +178,7 @@ $(function () {
             .then(response => response.json())
             .then(result => {
                 hideLoader();
+                console.log(result);
                 const convertedAmount = result.result;
                 const rate = result.info.rate;
                 const currenttimestamp = result.info.timestamp;
