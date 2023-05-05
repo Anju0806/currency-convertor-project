@@ -49,10 +49,8 @@ $(function () {
   function activateConvertButton() {
     $("#convertbtn").prop("disabled", false);
   }
-
   //to display chart
   let chart = null;
-
   function displayChart(fromCountry, toCountry) {
     const start_date = "2022-09-01";
     const currentDate = new Date().toISOString().slice(0, 10);
@@ -79,19 +77,17 @@ $(function () {
         const lineSeries = chart.addLineSeries();
         lineSeries.setData(data);
         chart.timeScale().fitContent();
-
-        })
-      
+      })
       .catch(error => console.log('error', error));
   }
-    // Add a media query to rotate the arrow icon
+  // Add a media query to rotate the arrow icon
   const mediaQuery = window.matchMedia('(max-width: 768px)');
   function handleMediaQuery(event) {
-      if (event.matches) {
-          $("#arrow-icon").addClass('rotate');
-      } else {
-          $("#arrow-icon").removeClass('rotate');
-      }
+    if (event.matches) {
+      $("#arrow-icon").addClass('rotate');
+    } else {
+      $("#arrow-icon").removeClass('rotate');
+    }
   }
   mediaQuery.addListener(handleMediaQuery);
   handleMediaQuery(mediaQuery);
