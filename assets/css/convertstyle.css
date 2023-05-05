@@ -33,9 +33,14 @@ body {
     width:70% !important;
 }
 .box {
+    display: flex;
+    -ms-flex-align: center;
+    flex-direction: column;
     margin-bottom: .5rem !important;
-    padding:.5rem;
+    padding: 20px;
+         
   }
+  
 
 .wrapper1{
     margin-top: 1rem;
