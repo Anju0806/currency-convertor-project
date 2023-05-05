@@ -135,7 +135,7 @@ $(function () {
     function getConvertdata(amount, fromCountry, toCountry) {
         $("#text-error-value").html("");
         let myHeaders = new Headers();
-        myHeaders.append("apikey", "Ii9YZg90vrKmPRI0gEbU0YXsWgfyM6X5");
+        myHeaders.append("apikey", "F1xUYBLVdm9wU95XQbmSGH6U82MRPMI3");
         let requestOptions = {
             method: 'GET',
             redirect: 'follow',

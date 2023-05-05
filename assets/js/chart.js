@@ -51,11 +51,13 @@ $(function () {
   }
 
   //to display chart
+  let chart = null;
+
   function displayChart(fromCountry, toCountry) {
     const start_date = "2022-09-01";
     const currentDate = new Date().toISOString().slice(0, 10);
     let myHeaders = new Headers();
-    myHeaders.append("apikey", "Ii9YZg90vrKmPRI0gEbU0YXsWgfyM6X5");
+    myHeaders.append("apikey", "F1xUYBLVdm9wU95XQbmSGH6U82MRPMI3");
     let requestOptions = {
       method: 'GET',
       redirect: 'follow',
@@ -69,48 +71,29 @@ $(function () {
         hideLoader();
         activateConvertButton();
         const data = Object.entries(result.rates).map(([date, rates]) => ({ time: date, value: rates[toCountry] }));
-        const chart = LightweightCharts.createChart($("#chart-section")[0], { width: 800, height: 400 });
-        /* chart.applyOptions({
-          layout: {
-            backgroundColor: '#FFFFFF',
-            textColor: '#333',
-            fontFamily: 'Arial',
-            fontSize: 12,
-            paddingBottom: 0,
-            paddingTop: 0,
-            paddingRight: 0,
-            paddingLeft: 0,
-          },
-          watermark: {
-            visible: false
-          }
-        });  */
-        $("#chart-section").css({ width: "800px", margin: "auto" });
-        
-        // Add the new series with the updated data
+        if (chart) {
+          // Remove the previously created chart
+          chart.remove();
+        }
+        chart = LightweightCharts.createChart($("#chart-section")[0], { width: 800, height: 400 });
         const lineSeries = chart.addLineSeries();
-        //lineSeries.setData([]);
         lineSeries.setData(data);
         chart.timeScale().fitContent();
-        //chart.removeAllSeries();
-        //chartDisplayed = true;
-      })
+
+        })
+      
       .catch(error => console.log('error', error));
   }
-
-  
-
-  // Add a media query to rotate the arrow icon
+    // Add a media query to rotate the arrow icon
   const mediaQuery = window.matchMedia('(max-width: 768px)');
   function handleMediaQuery(event) {
-    if (event.matches) {
-      $("#arrow-icon").addClass('rotate');
-    } else {
-      $("#arrow-icon").removeClass('rotate');
-    }
+      if (event.matches) {
+          $("#arrow-icon").addClass('rotate');
+      } else {
+          $("#arrow-icon").removeClass('rotate');
+      }
   }
   mediaQuery.addListener(handleMediaQuery);
   handleMediaQuery(mediaQuery);
+
 });
-
-
