@@ -2,7 +2,7 @@ body {
     background: url(../images/blue_world_map.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden;
+    overflow: auto;
     height: 100vh;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
 }

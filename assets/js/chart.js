@@ -33,6 +33,23 @@ $(function () {
     let toCountry = $("#dropdown4").val();
     addToDropdowns(toCountry, fromCountry);
   });
+
+  //bulma loader show and hide functions
+  function showLoader() {
+    $("#progress1").removeClass('is-hidden');
+  }
+  function hideLoader() {
+    $("#progress1").addClass('is-hidden');
+  }
+
+  //show and disable functions for convert button while data is retrieved from API.
+  function disableConvertButton() {
+    $("#convertbtn").prop("disabled", true);
+  }
+  function activateConvertButton() {
+    $("#convertbtn").prop("disabled", false);
+  }
+
   //to display chart
   function displayChart(fromCountry, toCountry) {
     const start_date = "2022-09-01";
@@ -53,7 +70,7 @@ $(function () {
         activateConvertButton();
         const data = Object.entries(result.rates).map(([date, rates]) => ({ time: date, value: rates[toCountry] }));
         const chart = LightweightCharts.createChart($("#chart-section")[0], { width: 800, height: 400 });
-        chart.applyOptions({
+        /* chart.applyOptions({
           layout: {
             backgroundColor: '#FFFFFF',
             textColor: '#333',
@@ -62,39 +79,26 @@ $(function () {
             paddingBottom: 0,
             paddingTop: 0,
             paddingRight: 0,
-            paddingLeft: 0
+            paddingLeft: 0,
           },
           watermark: {
             visible: false
           }
-        });
+        });  */
         $("#chart-section").css({ width: "800px", margin: "auto" });
         
         // Add the new series with the updated data
         const lineSeries = chart.addLineSeries();
-        lineSeries.setData([]);
+        //lineSeries.setData([]);
         lineSeries.setData(data);
         chart.timeScale().fitContent();
+        //chart.removeAllSeries();
         //chartDisplayed = true;
       })
       .catch(error => console.log('error', error));
   }
 
-  //bulma loader show and hide functions
-  function showLoader() {
-    $("#progress1").removeClass('is-hidden');
-  }
-  function hideLoader() {
-    $("#progress1").addClass('is-hidden');
-  }
-
-  //show and disable functions for convert button while data is retrieved from API.
-  function disableConvertButton() {
-    $("#convertbtn").prop("disabled", true);
-  }
-  function activateConvertButton() {
-    $("#convertbtn").prop("disabled", false);
-  }
+  
 
   // Add a media query to rotate the arrow icon
   const mediaQuery = window.matchMedia('(max-width: 768px)');
@@ -108,3 +112,5 @@ $(function () {
   mediaQuery.addListener(handleMediaQuery);
   handleMediaQuery(mediaQuery);
 });
+
+
