@@ -19,7 +19,7 @@ body {
 
 .tabs ul {
     background-color: #c4c8d1e1;
-
+    border-radius: 6px;
 }
 .tabs a {
     color:white;

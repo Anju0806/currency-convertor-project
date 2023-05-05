@@ -67,7 +67,7 @@ $(function () {
         currencyList.forEach(({ from, to }) => {
             const listItem = $('<li>');
             const link = $('<a>').attr('href', '#').click(() => {
-                addToDropdowns(fromCountry, toCountry);
+                addToDropdowns(from, to);
                 getConvertdata(1, from, to);
             }).text(`${from} to ${to}`);
 
