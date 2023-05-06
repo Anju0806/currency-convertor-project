@@ -34,13 +34,15 @@ $(function () {
     displaySearches();
     displayPopular();
 
+    
     //dispaly the popular conversions with the selected from country
     function displayPopular() {
         $('#menu-popular').empty();
         let fromCountry = $("#dropdown1").val();
         const tc = ["GBP", "INR", "NZD", "USD", "EUR", "AUD"];
+        let count = 0; // keep track of number of items added
         tc.forEach((toCountry) => {
-            if (fromCountry == toCountry) {
+            if (fromCountry == toCountry || count >= 5) { // break loop when 5 items have been added
                 return;
             }
             const link = $('<a>').attr('href', '#').click(() => {
@@ -49,8 +51,10 @@ $(function () {
             }).text(`${fromCountry} to ${toCountry} `);
             const listItem = $('<li>').append($('<div>').addClass('box').append(link));
             $('#menu-popular').prepend(listItem);
+            count++; // increment count after adding an item
         });
     }
+
     function addToDropdowns(fromCountry, toCountry) {
         $("#dropdown1").val(fromCountry);
         $("#dropdown2").val(toCountry);
