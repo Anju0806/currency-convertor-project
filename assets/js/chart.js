@@ -2,25 +2,22 @@ $(function () {
   //const CHARTS_TAB_FLAG = 'chartsTabActive';
   $("#charts-tab").click(function () {
     // find out the height of convert section and set height of chart section to be the same
-    $('#chart-section').height(620)
+    $('#chart-section').height(800)
     $("#charts-tab").addClass("is-active");
     $("#convert-tab").removeClass("is-active");
     $("#convert-section").addClass('is-hidden');
     $("#chart-section").removeClass('is-hidden');
-
     //to make same the selection in dropdowns(convert section and chart section)
     let fromCountry = $("#dropdown1").val();
     let toCountry = $("#dropdown2").val();
     addToDropdowns(fromCountry, toCountry)
   });
-
   //display chart button click event
   $("#chartbtn").click(function () {
     let fromCountry = $("#dropdown3").val();
     let toCountry = $("#dropdown4").val();
     displayChart(fromCountry, toCountry);
   });
-
   function addToDropdowns(fromCountry, toCountry) {
     $("#dropdown3").val(fromCountry);
     $("#dropdown4").val(toCountry);
@@ -33,7 +30,6 @@ $(function () {
     let toCountry = $("#dropdown4").val();
     addToDropdowns(toCountry, fromCountry);
   });
-
   //bulma loader show and hide functions
   function showLoader() {
     $("#progress1").removeClass('is-hidden');
@@ -43,7 +39,6 @@ $(function () {
     $("#progress1").addClass('is-hidden');
     $(".loader-space").remove(); // Remove the loader space element
   }
-
   //show and disable functions for convert button while data is retrieved from API.
   function disableChartButton() {
     $("#chartbtn").prop("disabled", true);
@@ -52,6 +47,7 @@ $(function () {
     $("#chartbtn").prop("disabled", false);
   }
   //to display chart
+ 
   let chart = null;
   function displayChart(fromCountry, toCountry) {
     const start_date = "2022-09-01";
@@ -90,8 +86,11 @@ $(function () {
   function handleMediaQuery(event) {
     if (event.matches) {
       $("#arrow-icon").addClass('rotate');
+     $("#chart-section").css({ width: "200px", height: "300px" });
     } else {
       $("#arrow-icon").removeClass('rotate');
+      $("#chart-section").css({ width: "800px", height: "400px" });
+
     }
   }
   // Add a media query to handle responsiveness
@@ -109,3 +108,14 @@ $(function () {
   handleMediaQuery(mediaQuery);
 
 });
+
+
+
+
+
+
+
+
+
+
+
