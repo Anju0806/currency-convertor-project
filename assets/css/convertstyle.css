@@ -1,160 +1,101 @@
 body {
-    background: url(../images/blue_world_map.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: auto;
-    height: 100vh;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
-    }
-
-.hero.is-primary{
-    background-color: rgba(27,24,23,0.1);
+  background: url(../images/blue_world_map.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: auto;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.bg{
-    background: url(../images/blue_world_map.jpeg); 
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
-    height: 100vh;
+
+.hero.is-primary {
+  background-color: rgba(27, 24, 23, 0.1);
+}
+
+.bg {
+  background: url(../images/blue_world_map.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: auto;
+  height: 100vh;
 }
 
 .tabs ul {
-    background-color: #c4c8d1e1;
-    border-radius: 6px;
-}
-.tabs a{
-    color:white;
-}
-.tab-content {
-    width: 100%;
-  }
-  
-  .tab-pane {
-    width: 100%;
-    height: 100%;
-  }
-.b{
-    border: rgba(0, 0, 0, 0.969);
-   }
-
-.wrapper{
-    display: flex;
-    flex-wrap: wrap;
-    width:70% !important;
-}
-.box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 1rem;
-     }
-
-  
-.box a{
-    text-decoration: none;
-    color: #333;
-    
-  }
-  
-  .box:hover {
-    background-color: #f5f5f5;
-  }
-
-.wrapper1{
-    margin-top: 1rem;
-    width:70% !important;
-}
-.dropdowno{
-    width: 100%;
+  background-color: #c4c8d1e1;
+  border-radius: 6px;
 }
 
-#chart-section {
+.tabs a {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
+  color: white;
+}
+
+.tab-content {
   width: 100%;
 }
-  @media (max-width: 768px) {
-    .rotate {
-      transform: rotate(90deg);
-    }
+
+.tab-pane {
+  width: 100%;
+  height: 100%;
 }
-body {
-    background: url(../images/blue_world_map.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: auto;
-    height: 100vh;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
-    }
-.hero.is-primary{
-    background-color: rgba(27,24,23,0.1);
+
+.b {
+  border: rgba(0, 0, 0, 0.969);
 }
-.bg{
-    background: url(../images/blue_world_map.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
-    height: 100vh;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
 }
-.tabs ul {
-    background-color: #c4c8d1e1;
-    border-radius: 6px;
+
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 1rem;
 }
-.tabs a{
-    color:white;
+
+.box a {
+  text-decoration: none;
+  color: #333;
 }
-.tab-content {
-    width: 100%;
-  }
-  .tab-pane {
-    width: 100%;
-    height: 100%;
-  }
-.b{
-    border: rgba(0, 0, 0, 0.969);
-   }
-.wrapper{
-    display: flex;
-    flex-wrap: wrap;
-    width:70% !important;
+
+.box:hover {
+  background-color: #f5f5f5;
 }
-.box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 1rem;
-     }
-.box a{
-    text-decoration: none;
-    color: #333;
-  }
-  .box:hover {
-    background-color: #F5F5F5;
-  }
-.wrapper1{
-    margin-top: 1rem;
-    width:70% !important;
+
+.wrapper1 {
+  margin-top: 1rem;
+  width: 100%;
 }
-.dropdowno{
-    width: 100%;
+
+.dropdowno {
+  display: flex;
+  flex-direction:column;
+  width: 100%;
 }
+
+.select {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+}
+
 @media (max-width: 768px) {
-    .rotate {
-      transform: rotate(90deg);
-    }
+  .rotate {
+    transform: rotate(90deg);
+  }
+
+  .wrapper {
+    width: 100%;
+  }
 }
-
-
-
-

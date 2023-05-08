@@ -34,7 +34,7 @@ $(function () {
     displaySearches();
     displayPopular();
 
-    
+
     //dispaly the popular conversions with the selected from country
     function displayPopular() {
         $('#menu-popular').empty();
@@ -139,7 +139,7 @@ $(function () {
     function getConvertdata(amount, fromCountry, toCountry) {
         $("#text-error-value").html("");
         let myHeaders = new Headers();
-        myHeaders.append("apikey", "F1xUYBLVdm9wU95XQbmSGH6U82MRPMI3");
+        myHeaders.append("apikey", "zHB9VLonMAmAOeTMm2jCrcr9diIfCXH1");
         let requestOptions = {
             method: 'GET',
             redirect: 'follow',
