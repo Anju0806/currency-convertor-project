@@ -33,9 +33,11 @@ $(function () {
   //bulma loader show and hide functions
   function showLoader() {
     $("#progress1").removeClass('is-hidden');
+    $("#progress1").after('<div class="loader-space"></div>');
   }
   function hideLoader() {
     $("#progress1").addClass('is-hidden');
+    $(".loader-space").remove(); // Remove the loader space element
   }
   //show and disable functions for convert button while data is retrieved from API.
   function disableConvertButton() {
@@ -45,6 +47,7 @@ $(function () {
     $("#convertbtn").prop("disabled", false);
   }
   //to display chart
+  let chart = null;
   let chart = null;
   function displayChart(fromCountry, toCountry) {
     const start_date = "2022-09-01";
@@ -68,11 +71,14 @@ $(function () {
           // Remove the previously created chart
           chart.remove();
         }
-        chart = LightweightCharts.createChart($("#chart-section")[0], { width: 800, height: 400 });
+        chart = LightweightCharts.createChart($("#chart-section")[0],{ width: 700, height: 400 });
         const lineSeries = chart.addLineSeries();
         lineSeries.setData(data);
         chart.timeScale().fitContent();
+        // Add a space after the chart
+        $("#chart-section").after('<div class="chart-space"></div>'); 
       })
+
       .catch(error => console.log('error', error));
   }
   // Add a media query to rotate the arrow icon
@@ -87,8 +93,20 @@ $(function () {
 
     }
   }
+// Add a media query to handle responsiveness
+function handleMediaQuery(event) {
+  if (event.matches) {
+    // Apply responsive styles for smaller screens
+    $("#chart-section").height(300); // Adjust the chart section height for smaller screens
+  } else {
+    // Apply default styles for larger screens
+    $("#chart-section").height(620); // Adjust the chart section height for larger screens
+  }
+}
+
   mediaQuery.addListener(handleMediaQuery);
   handleMediaQuery(mediaQuery);
+
 });
 
 
