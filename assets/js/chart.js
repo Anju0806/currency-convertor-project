@@ -47,7 +47,7 @@ $(function () {
     $("#convertbtn").prop("disabled", false);
   }
   //to display chart
-  let chart = null;
+ 
   let chart = null;
   function displayChart(fromCountry, toCountry) {
     const start_date = "2022-09-01";
