@@ -2,25 +2,22 @@ $(function () {
   //const CHARTS_TAB_FLAG = 'chartsTabActive';
   $("#charts-tab").click(function () {
     // find out the height of convert section and set height of chart section to be the same
-    $('#chart-section').height(620)
+    $('#chart-section').height(800)
     $("#charts-tab").addClass("is-active");
     $("#convert-tab").removeClass("is-active");
     $("#convert-section").addClass('is-hidden');
     $("#chart-section").removeClass('is-hidden');
-
     //to make same the selection in dropdowns(convert section and chart section)
     let fromCountry = $("#dropdown1").val();
     let toCountry = $("#dropdown2").val();
     addToDropdowns(fromCountry, toCountry)
   });
-
   //display chart button click event
   $("#chartbtn").click(function () {
     let fromCountry = $("#dropdown3").val();
     let toCountry = $("#dropdown4").val();
     displayChart(fromCountry, toCountry);
   });
-
   function addToDropdowns(fromCountry, toCountry) {
     $("#dropdown3").val(fromCountry);
     $("#dropdown4").val(toCountry);
@@ -33,7 +30,6 @@ $(function () {
     let toCountry = $("#dropdown4").val();
     addToDropdowns(toCountry, fromCountry);
   });
-
   //bulma loader show and hide functions
   function showLoader() {
     $("#progress1").removeClass('is-hidden');
@@ -41,7 +37,6 @@ $(function () {
   function hideLoader() {
     $("#progress1").addClass('is-hidden');
   }
-
   //show and disable functions for convert button while data is retrieved from API.
   function disableConvertButton() {
     $("#convertbtn").prop("disabled", true);
@@ -49,13 +44,13 @@ $(function () {
   function activateConvertButton() {
     $("#convertbtn").prop("disabled", false);
   }
-
   //to display chart
+  let chart = null;
   function displayChart(fromCountry, toCountry) {
     const start_date = "2022-09-01";
     const currentDate = new Date().toISOString().slice(0, 10);
     let myHeaders = new Headers();
-    myHeaders.append("apikey", "Ii9YZg90vrKmPRI0gEbU0YXsWgfyM6X5");
+    myHeaders.append("apikey", "F1xUYBLVdm9wU95XQbmSGH6U82MRPMI3");
     let requestOptions = {
       method: 'GET',
       redirect: 'follow',
@@ -69,48 +64,40 @@ $(function () {
         hideLoader();
         activateConvertButton();
         const data = Object.entries(result.rates).map(([date, rates]) => ({ time: date, value: rates[toCountry] }));
-        const chart = LightweightCharts.createChart($("#chart-section")[0], { width: 800, height: 400 });
-        /* chart.applyOptions({
-          layout: {
-            backgroundColor: '#FFFFFF',
-            textColor: '#333',
-            fontFamily: 'Arial',
-            fontSize: 12,
-            paddingBottom: 0,
-            paddingTop: 0,
-            paddingRight: 0,
-            paddingLeft: 0,
-          },
-          watermark: {
-            visible: false
-          }
-        });  */
-        $("#chart-section").css({ width: "800px", margin: "auto" });
-        
-        // Add the new series with the updated data
+        if (chart) {
+          // Remove the previously created chart
+          chart.remove();
+        }
+        chart = LightweightCharts.createChart($("#chart-section")[0], { width: 800, height: 400 });
         const lineSeries = chart.addLineSeries();
-        //lineSeries.setData([]);
         lineSeries.setData(data);
         chart.timeScale().fitContent();
-        //chart.removeAllSeries();
-        //chartDisplayed = true;
       })
       .catch(error => console.log('error', error));
   }
-
-  
-
   // Add a media query to rotate the arrow icon
   const mediaQuery = window.matchMedia('(max-width: 768px)');
   function handleMediaQuery(event) {
     if (event.matches) {
       $("#arrow-icon").addClass('rotate');
+     $("#chart-section").css({ width: "200px", height: "300px" });
     } else {
       $("#arrow-icon").removeClass('rotate');
+      $("#chart-section").css({ width: "800px", height: "400px" });
+
     }
   }
   mediaQuery.addListener(handleMediaQuery);
   handleMediaQuery(mediaQuery);
 });
+
+
+
+
+
+
+
+
+
 
 
