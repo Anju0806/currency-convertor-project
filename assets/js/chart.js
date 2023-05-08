@@ -45,11 +45,11 @@ $(function () {
   }
 
   //show and disable functions for convert button while data is retrieved from API.
-  function disableConvertButton() {
-    $("#convertbtn").prop("disabled", true);
+  function disableChartButton() {
+    $("#chartbtn").prop("disabled", true);
   }
-  function activateConvertButton() {
-    $("#convertbtn").prop("disabled", false);
+  function activateChartButton() {
+    $("#chartbtn").prop("disabled", false);
   }
   //to display chart
   let chart = null;
@@ -64,23 +64,23 @@ $(function () {
       headers: myHeaders
     };
     showLoader();
-    disableConvertButton();
+    disableChartButton();
     fetch(`https://api.apilayer.com/exchangerates_data/timeseries?start_date=${start_date}&end_date=${currentDate}&base=${fromCountry}&symbols=${toCountry}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         hideLoader();
-        activateConvertButton();
+        activateChartButton();
         const data = Object.entries(result.rates).map(([date, rates]) => ({ time: date, value: rates[toCountry] }));
         if (chart) {
           // Remove the previously created chart
           chart.remove();
         }
-        chart = LightweightCharts.createChart($("#chart-section")[0],{ width: 700, height: 400 });
+        chart = LightweightCharts.createChart($("#chart_data")[0], { width: 600, height: 400 });
         const lineSeries = chart.addLineSeries();
         lineSeries.setData(data);
         chart.timeScale().fitContent();
         // Add a space after the chart
-        $("#chart-section").after('<div class="chart-space"></div>'); 
+        $("#chart_data").after('<div class="chart-space"></div>');
       })
 
       .catch(error => console.log('error', error));
@@ -94,16 +94,16 @@ $(function () {
       $("#arrow-icon").removeClass('rotate');
     }
   }
-// Add a media query to handle responsiveness
-function handleMediaQuery(event) {
-  if (event.matches) {
-    // Apply responsive styles for smaller screens
-    $("#chart-section").height(300); // Adjust the chart section height for smaller screens
-  } else {
-    // Apply default styles for larger screens
-    $("#chart-section").height(620); // Adjust the chart section height for larger screens
+  // Add a media query to handle responsiveness
+  function handleMediaQuery(event) {
+    if (event.matches) {
+      // Apply responsive styles for smaller screens
+      $("#chart_data").height(300); // Adjust the chart section height for smaller screens
+    } else {
+      // Apply default styles for larger screens
+      $("#chart_data").height(620); // Adjust the chart section height for larger screens
+    }
   }
-}
 
   mediaQuery.addListener(handleMediaQuery);
   handleMediaQuery(mediaQuery);

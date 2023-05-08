@@ -71,7 +71,15 @@ body {
 .dropdowno{
     width: 100%;
 }
- 
+
+#chart-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
   @media (max-width: 768px) {
     .rotate {
       transform: rotate(90deg);
