@@ -22,6 +22,7 @@ https://apilayer.com/marketplace/exchangerates_data-api
 * The URL of the GitHub repository that contains the code:
 https://github.com/Anju0806/currency-convertor-project.git
 * The URL of the deployed application:
+https://anju0806.github.io/currency-convertor-project/
 
 ## Screenshots
 ![ss-index-html-2023-05-09-17_43_06](https://user-images.githubusercontent.com/126565826/237059078-62bdb945-9dc6-4ab1-8d28-be7cda0c31c3.png)
