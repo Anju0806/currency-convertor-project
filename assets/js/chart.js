@@ -53,7 +53,7 @@ $(function () {
     const start_date = "2022-09-01";
     const currentDate = new Date().toISOString().slice(0, 10);
     let myHeaders = new Headers();
-    myHeaders.append("apikey", "F1xUYBLVdm9wU95XQbmSGH6U82MRPMI3");
+    myHeaders.append("apikey", "zHB9VLonMAmAOeTMm2jCrcr9diIfCXH1");
     let requestOptions = {
       method: 'GET',
       redirect: 'follow',
@@ -87,35 +87,16 @@ $(function () {
     if (event.matches) {
       $("#arrow-icon").addClass('rotate');
      $("#chart-section").css({ width: "200px", height: "300px" });
+     $("#chart-section").height(300); // Adjust the chart section height for smaller screens
     } else {
       $("#arrow-icon").removeClass('rotate');
       $("#chart-section").css({ width: "800px", height: "400px" });
+      $("#chart-section").height(620); // Adjust the chart section height for larger screens
 
     }
   }
-// Add a media query to handle responsiveness
-function handleMediaQuery(event) {
-  if (event.matches) {
-    // Apply responsive styles for smaller screens
-    $("#chart-section").height(300); // Adjust the chart section height for smaller screens
-  } else {
-    // Apply default styles for larger screens
-    $("#chart-section").height(620); // Adjust the chart section height for larger screens
-  }
-}
 
   mediaQuery.addListener(handleMediaQuery);
   handleMediaQuery(mediaQuery);
 
 });
-
-
-
-
-
-
-
-
-
-
-
