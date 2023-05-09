@@ -34,7 +34,7 @@ $(function () {
     displaySearches();
     displayPopular();
 
-    
+
     //dispaly the popular conversions with the selected from country
     function displayPopular() {
         $('#menu-popular').empty();
