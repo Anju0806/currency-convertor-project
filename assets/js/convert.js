@@ -1,5 +1,4 @@
 $(function () {
-
     //convert tab click event
     $("#convert-tab").click(function () {
         $("#convert-tab").addClass("is-active");
@@ -7,21 +6,12 @@ $(function () {
         $("#chart-section").addClass('is-hidden');
         $("#convert-section").removeClass('is-hidden');
     });
-    const icon = $('<i>').addClass('fas fa-plus');
-    const icon1 = $('<i>').addClass('fas fa-plus');
-    icon.addClass('pl-6');
-    icon.addClass('pl-6');
-    $('.box').append(icon);
-    $('.box').append(icon1);
 
     //toggle arrow click event
     $("#arrow-icon").click(function () {
         let fromCountry = $("#dropdown1").val();
         let toCountry = $("#dropdown2").val();
-        $("#dropdown1").val(toCountry);
-        $("#dropdown2").val(fromCountry);
-        $("#dropdown1").trigger('change');
-        $("#dropdown2").trigger('change');
+        addToDropdowns(toCountry, fromCountry)
     });
 
     //convert button click event
@@ -48,44 +38,47 @@ $(function () {
     function displayPopular() {
         $('#menu-popular').empty();
         let fromCountry = $("#dropdown1").val();
-        const tc = [ "GBP", "INR", "NZD", "USD","EUR","AUD"];
+        const tc = ["GBP", "INR", "NZD", "USD", "EUR", "AUD"];
+        let count = 0; // keep track of number of items added
         tc.forEach((toCountry) => {
-            if (fromCountry == toCountry) {
+            if (fromCountry == toCountry || count >= 5) { // break loop when 5 items have been added
                 return;
             }
             const link = $('<a>').attr('href', '#').click(() => {
-                $("#dropdown1").val(fromCountry);
-                $("#dropdown2").val(toCountry);
-                $("#dropdown1").trigger('change');
-                $("#dropdown2").trigger('change');
+                addToDropdowns(fromCountry, toCountry);
                 getConvertdata(1, fromCountry, toCountry);
             }).text(`${fromCountry} to ${toCountry} `);
-             const listItem = $('<li>').append($('<div>').addClass('box').append(link));
-            $('#menu-popular').prepend(listItem); 
+            const listItem = $('<li>').append($('<div>').addClass('box').append(link));
+            $('#menu-popular').prepend(listItem);
+            count++; // increment count after adding an item
         });
     }
-    
+
+    function addToDropdowns(fromCountry, toCountry) {
+        $("#dropdown1").val(fromCountry);
+        $("#dropdown2").val(toCountry);
+        $("#dropdown1").trigger('change');
+        $("#dropdown2").trigger('change');
+    }
+
     //fetching local storage and adding click event to each search element
     function displaySearches() {
-        $("#recent-searches").removeClass("is-hidden");
-        const currencyList = JSON.parse(localStorage.getItem("currencyList")) || [];
+        $("#recent-searches").removeClass('is-hidden');
+        const currencyList = JSON.parse(localStorage.getItem('currencyList')) || [];
         $('#menu-recent-searches').empty();
-      
+
         currencyList.forEach(({ from, to }) => {
+            const listItem = $('<li>');
             const link = $('<a>').attr('href', '#').click(() => {
-                // TODO: optimize??
-                $("#dropdown1").val(from);
-                $("#dropdown2").val(to);
-                $("#dropdown1").trigger('change');
-                $("#dropdown2").trigger('change');
+                addToDropdowns(from, to);
                 getConvertdata(1, from, to);
             }).text(`${from} to ${to}`);
-            
+
             const clearBtn = $('<button>').attr('type', 'button').addClass('delete is-hidden').click(() => {
                 removeLocal(from, to);
                 listItem.remove();
             }).text('Clear');
-            link.append(clearBtn);
+            link.append('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', clearBtn);
             link.on('mouseenter', () => {
                 clearBtn.removeClass('is-hidden');
             });
@@ -94,11 +87,8 @@ $(function () {
             });
             listItem.append($('<div>').addClass('box').append(link));
             $('#menu-recent-searches').prepend(listItem);
->>>>>>> 2c3ab86405eb36a404af7c354ec40054785ee06a
         });
-      }
-      
-    
+    }
 
     //bulma loader show and hide functions
     function showLoader() {
@@ -106,6 +96,13 @@ $(function () {
     }
     function hideLoader() {
         $("#progress").addClass('is-hidden');
+    }
+    //show and disable functions for convert button while data is retrieved from API.
+    function disableConvertButton() {
+        $("#convertbtn").prop("disabled", true);
+    }
+    function activateConvertButton() {
+        $("#convertbtn").prop("disabled", false);
     }
 
     //adding fromcountry and tocountry to local storage
@@ -140,7 +137,7 @@ $(function () {
     function getConvertdata(amount, fromCountry, toCountry) {
         $("#text-error-value").html("");
         let myHeaders = new Headers();
-        myHeaders.append("apikey", "Ii9YZg90vrKmPRI0gEbU0YXsWgfyM6X5");
+        myHeaders.append("apikey", "zHB9VLonMAmAOeTMm2jCrcr9diIfCXH1");
         let requestOptions = {
             method: 'GET',
             redirect: 'follow',
@@ -148,10 +145,12 @@ $(function () {
         };
         const url = `https://api.apilayer.com/exchangerates_data/convert?to=${toCountry}&from=${fromCountry}&amount=${amount}`;
         showLoader();
+        disableConvertButton();
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(result => {
                 hideLoader();
+                activateConvertButton();
                 console.log(result);
                 const convertedAmount = result.result;
                 const rate = result.info.rate;
@@ -177,6 +176,6 @@ $(function () {
         }
     }
     mediaQuery.addListener(handleMediaQuery);
-    handleMediaQuery(mediaQuery);
+//    handleMediaQuery(mediaQuery);
 
 });

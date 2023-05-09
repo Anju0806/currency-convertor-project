@@ -1,62 +1,109 @@
 body {
-    background: url(../images/blue_world_map.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
-    height: 100vh;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+  background: url(../images/blue_world_map.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: auto;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.hero.is-primary{
-    background-color: rgba(27,24,23,0.1);
+.hero.is-primary {
+  background-color: rgba(27, 24, 23, 0.1);
 }
-.bg{
-    background: url(../images/blue_world_map.jpeg); 
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
-    height: 100vh;
-}
-
-.tabs ul {
-    background-color: #c4c8d1e1;
-
+.bg {
+  background: url(../images/blue_world_map.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: auto;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .tabs a {
-    color:white;
+  display: flex;
+  color: white;
 }
-.b{
-    border: rgba(0, 0, 0, 0.969);
-   }
-
-.wrapper{
-    
-    width:70% !important;
-      
+.tabs.is-boxed a {
+  border-color: rgba(219, 209, 209, 0.969);
+}
+.b {
+  border: rgba(0, 0, 0, 0.969);
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
 }
 .box {
-    margin-bottom: .5rem !important;
-    padding:.5rem;
-  }
-
-.wrapper1{
-    margin-top: 1rem;
-    width:70% !important;
-    
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 1rem;
+}
+.box a {
+  text-decoration: none;
+  color: #333;
+}
+.box:hover {
+  background-color: #F5F5F5;
+}
+.wrapper1 {
+  margin-top: 1rem;
+  width: 100%;
+}
+.dropdowno {
+  display: flex;
+  flex-direction:column;
+  width: 100%;
+}
+.select {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
 }
 
-
-.dropdowno{
-    width: 100%;
-}
-
-li.is-hoverable:hover .delete {
-    display: inline-block;
-}
-
-  
 @media (max-width: 768px) {
-    .rotate {
-      transform: rotate(90deg);
-    }
+  .rotate {
+    transform: rotate(90deg);
+  }
+  .wrapper {
+    width: 100%;
+  }
+}
+/* Default styles for the chart page */
+#chart-section {
+  width: 100%;
+  height: 700px;
 }
 
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 767px) {
+  #chart-section {
+    height: 320px;
+  }
+}
+/* Set the chart container's width and height */
+.chart-container {
+  width: 100%; /* Adjust as needed */
+  height: 0;
+  padding-bottom: 60%; /* Adjust to maintain aspect ratio */
+  position: relative;
+}
+/* Style the chart within the container */
+.chart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* Apply responsive styles for smaller screens */
+@media screen and (max-width: 768px) {
+  .chart-container {
+    padding-bottom: 40%; /* Adjust to maintain aspect ratio */
+  }
+}
