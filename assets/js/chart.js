@@ -52,7 +52,7 @@ $(function () {
     const start_date = "2022-09-01";
     const currentDate = new Date().toISOString().slice(0, 10);
     let myHeaders = new Headers();
-    myHeaders.append("apikey", "zHB9VLonMAmAOeTMm2jCrcr9diIfCXH1");
+    myHeaders.append("apikey", "SLvJL4b6jdzjDVNwF1qydTKZsrngEtY3");
     let requestOptions = {
       method: 'GET',
       redirect: 'follow',
@@ -96,4 +96,5 @@ $(function () {
   }
  mediaQuery.addListener(handleMediaQuery); 
  handleMediaQuery(mediaQuery);
+
 });

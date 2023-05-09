@@ -101,6 +101,10 @@ body {
   width: 100%;
   height: 100%;
 }
+.chart-data{
+  display: flex;
+    justify-content: center;
+}
 /* Apply responsive styles for smaller screens */
 @media screen and (max-width: 768px) {
   .chart-container {
