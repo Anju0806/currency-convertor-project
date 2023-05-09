@@ -63,7 +63,7 @@ $(function () {
 
     //fetching local storage and adding click event to each search element
     function displaySearches() {
-        $("#recent-searches").removeClass('is-hidden');
+        // $("#recent-searches").removeClass('is-hidden');
         const currencyList = JSON.parse(localStorage.getItem('currencyList')) || [];
         $('#menu-recent-searches').empty();
 
@@ -137,7 +137,7 @@ $(function () {
     function getConvertdata(amount, fromCountry, toCountry) {
         $("#text-error-value").html("");
         let myHeaders = new Headers();
-        myHeaders.append("apikey", "zHB9VLonMAmAOeTMm2jCrcr9diIfCXH1");
+        myHeaders.append("apikey", "SLvJL4b6jdzjDVNwF1qydTKZsrngEtY3");
         let requestOptions = {
             method: 'GET',
             redirect: 'follow',
