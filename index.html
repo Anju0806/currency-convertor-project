@@ -13,7 +13,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/convertstyle.css">
-    <link rel="stylesheet" href="assets/css/chart.css">
 </head>
 
 <body>
@@ -31,21 +30,18 @@
     <section class="box container wrapper p-0">
         <!--  toggle button -->
         <div class="tabs is-centered is-boxed ">
-            <ul>
-                <li id="convert-tab" class="is-active">
-                    <a> <span class="material-symbols-rounded">currency_exchange</span>
-                        <span>Convert</span>
-                    </a>
-                </li>
-                <li id="charts-tab">
-                    <a> <span class="material-symbols-rounded"><i class="fa-regular fa-chart-line-up"></i>
-                            chart_data</span>
-                        <span>Charts</span>
-                    </a>
-                </li>
-            </ul>
+            <section id="convert-tab" class="is-active">
+                <a> <span class="material-symbols-rounded">currency_exchange</span>
+                    <span>Convert</span></a>
+            </section>
+            <section id="charts-tab">
+                <a> <span class="material-symbols-rounded">
+                        <i class="fa-regular fa-chart-line-up"></i>chart_data</span>
+                    <span>Charts</span>
+                </a>
+            </section>
         </div>
-         <!-- adding convert section -->
+        <!-- adding convert section -->
         <div id="convert-section" class="p-2">
             <div class="columns">
                 <div class="column">
@@ -189,7 +185,7 @@
         <div id="chart-section" class="p-2 is-hidden">
             <div class="columns">
                 <div class="column">
-                    <label class="">From</label>
+                    <label class="label">From</label>
                     <div class="select">
                         <select id="dropdown3" class="dropdowno">
                             <option value="EUR">EUR - Euro</option>
@@ -300,12 +296,10 @@
                     </div>
                 </div>
             </div>
-            <!-- <div> -->
-                <progress class="progress is-small is-info is-hidden" id="progress1" max="100">15%</progress>
-            <!-- </div> -->
-            <div class = "chart-data" id="chart_data">
+            <progress class="progress is-small is-info is-hidden" id="progress1" max="100">15%</progress>
+            <div class="chart-data" id="chart_data">
             </div>
-               </section>
+    </section>
     <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/chart.js"></script>

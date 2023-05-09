@@ -1,119 +1,33 @@
-# Currency-Convertor
-Simple tool to check currency exchange rate
+## Currency Converter
 
-TODO
-//Page responsive-not inchart section, converter is good
-//chart to be center
+## Description
+The Currency Converter is a useful tool for anyone who needs to deal with multiple currencies, whether for personal or business purposes. 
+With its dynamic HTML and CSS, the application fetches real-time currency rate from a reliable third-party API. By using this application, you can quickly and easily convert between currencies and get accurate and up-to-date exchange rate information. 
 
-space given after image while refreshed. completed
-$(function () {
-  //const CHARTS_TAB_FLAG = 'chartsTabActive';
-  $("#charts-tab").click(function () {
-    // find out the height of convert section and set height of chart section to be the same
-    $('#chart-section').height(620)
-    $("#charts-tab").addClass("is-active");
-    $("#convert-tab").removeClass("is-active");
-    $("#convert-section").addClass('is-hidden');
-    $("#chart-section").removeClass('is-hidden');
+## Usage
+To use the Currency Converter:
 
-    //to make same the selection in dropdowns(convert section and chart section)
-    let fromCountry = $("#dropdown1").val();
-    let toCountry = $("#dropdown2").val();
-    addToDropdowns(fromCountry, toCountry)
-  });
+1. Select the currency you are converting from and the currency you are converting to. This can be done by selecting the appropriate options from a dropdown menu or by entering the currency codes or names manually.
+2. Enter the amount of the currency you are converting. This can be done by typing the value into a text box.
+3. Click the "Convert" button to see the converted value. The currency converter will use the current exchange rate between the two currencies to calculate the value.
+4. Optionally, you may also be able to see the exchange rate between the two currencies and a historical chart of exchange rates for those currencies.
+5. Once you have obtained the converted value, you can use it for whatever purpose you need, such as making a purchase, paying a bill, or tracking your expenses.
 
-  //display chart button click event
-  $("#chartbtn").click(function () {
-    let fromCountry = $("#dropdown3").val();
-    let toCountry = $("#dropdown4").val();
-    displayChart(fromCountry, toCountry);
-  });
 
-  function addToDropdowns(fromCountry, toCountry) {
-    $("#dropdown3").val(fromCountry);
-    $("#dropdown4").val(toCountry);
-    $("#dropdown3").trigger('change');
-    $("#dropdown4").trigger('change');
-  }
-  //toggle arrow click event
-  $("#arrow-icon1").click(function () {
-    let fromCountry = $("#dropdown3").val();
-    let toCountry = $("#dropdown4").val();
-    addToDropdowns(toCountry, fromCountry);
-  });
+## Credits
+Exchange Rates Data API:
+https://apilayer.com/marketplace/exchangerates_data-api
 
-  //bulma loader show and hide functions
-  function showLoader() {
-    $("#progress1").removeClass('is-hidden');
-    $("#progress1").after('<div class="loader-space"></div>');
-  }
-  function hideLoader() {
-    $("#progress1").addClass('is-hidden');
-    $(".loader-space").remove(); // Remove the loader space element
-  }
+## Links
+* The URL of the GitHub repository that contains the code:
 
-  //show and disable functions for convert button while data is retrieved from API.
-  function disableChartButton() {
-    $("#chartbtn").prop("disabled", true);
-  }
-  function activateChartButton() {
-    $("#chartbtn").prop("disabled", false);
-  }
-  //to display chart
-  let chart = null;
-  function displayChart(fromCountry, toCountry) {
-    const start_date = "2022-09-01";
-    const currentDate = new Date().toISOString().slice(0, 10);
-    let myHeaders = new Headers();
-    myHeaders.append("apikey", "F1xUYBLVdm9wU95XQbmSGH6U82MRPMI3");
-    let requestOptions = {
-      method: 'GET',
-      redirect: 'follow',
-      headers: myHeaders
-    };
-    showLoader();
-    disableChartButton();
-    fetch(`https://api.apilayer.com/exchangerates_data/timeseries?start_date=${start_date}&end_date=${currentDate}&base=${fromCountry}&symbols=${toCountry}`, requestOptions)
-      .then(response => response.json())
-      .then(result => {
-        hideLoader();
-        activateChartButton();
-        const data = Object.entries(result.rates).map(([date, rates]) => ({ time: date, value: rates[toCountry] }));
-        if (chart) {
-          // Remove the previously created chart
-          chart.remove();
-        }
-        chart = LightweightCharts.createChart($("#chart_data")[0], { width: 600, height: 400 });
-        const lineSeries = chart.addLineSeries();
-        lineSeries.setData(data);
-        chart.timeScale().fitContent();
-        // Add a space after the chart
-        $("#chart_data").after('<div class="chart-space"></div>');
-      })
+* The URL of the deployed application:
 
-      .catch(error => console.log('error', error));
-  }
-  // Add a media query to rotate the arrow icon
-  const mediaQuery = window.matchMedia('(max-width: 768px)');
-  function handleMediaQuery(event) {
-    if (event.matches) {
-      $("#arrow-icon").addClass('rotate');
-    } else {
-      $("#arrow-icon").removeClass('rotate');
-    }
-  }
-  // Add a media query to handle responsiveness
-  function handleMediaQuery(event) {
-    if (event.matches) {
-      // Apply responsive styles for smaller screens
-      $("#chart_data").height(300); // Adjust the chart section height for smaller screens
-    } else {
-      // Apply default styles for larger screens
-      $("#chart_data").height(620); // Adjust the chart section height for larger screens
-    }
-  }
+## Screenshots
 
-  mediaQuery.addListener(handleMediaQuery);
-  handleMediaQuery(mediaQuery);
 
-});
+## Installation
+N/A
+
+## License
+Please refer to the LICENSE file in the repository.

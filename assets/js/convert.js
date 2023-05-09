@@ -1,5 +1,4 @@
 $(function () {
-
     //convert tab click event
     $("#convert-tab").click(function () {
         $("#convert-tab").addClass("is-active");
@@ -105,7 +104,6 @@ $(function () {
     function activateConvertButton() {
         $("#convertbtn").prop("disabled", false);
     }
-
 
     //adding fromcountry and tocountry to local storage
     function addLocal(fromCountry, toCountry) {
