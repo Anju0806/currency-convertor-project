@@ -20,10 +20,12 @@ https://apilayer.com/marketplace/exchangerates_data-api
 
 ## Links
 * The URL of the GitHub repository that contains the code:
-
+https://github.com/Anju0806/currency-convertor-project.git
 * The URL of the deployed application:
 
 ## Screenshots
+![ss-index-html-2023-05-09-17_43_06](https://user-images.githubusercontent.com/126565826/237059078-62bdb945-9dc6-4ab1-8d28-be7cda0c31c3.png)
+![ss-chart-2023-05-09-17_44_21](https://user-images.githubusercontent.com/126565826/237059146-41435e5e-5c8a-49e4-994d-45368c7c7034.png)
 
 
 ## Installation
